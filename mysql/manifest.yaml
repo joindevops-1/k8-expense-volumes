@@ -59,7 +59,7 @@ spec:
         image: joindevops/mysql:v1.0
         imagePullPolicy: Always
         args:
-        - "--ignore-db-dir=lost+found"
+        - " --ignore-db-dir=lost+found "
         ports:
         - containerPort: 80
           name: web
