@@ -58,8 +58,8 @@ spec:
       - name: mysql
         image: joindevops/mysql:v1.0
         imagePullPolicy: Always
-        args:
-        - "--ignore-db-dir=lost+found"
+        # args:
+        # - "--ignore-db-dir=lost+found"
         volumeMounts:
         - name: mysql
           mountPath: /var/lib/mysql
