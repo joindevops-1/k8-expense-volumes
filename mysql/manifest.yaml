@@ -60,9 +60,6 @@ spec:
         imagePullPolicy: Always
         args:
         - "--ignore-db-dir=lost+found"
-        ports:
-        - containerPort: 80
-          name: web
         volumeMounts:
         - name: mysql
           mountPath: /var/lib/mysql
