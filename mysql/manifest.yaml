@@ -45,7 +45,7 @@ spec:
       project: expense
       tier: db 
   serviceName: "mysql-headless"
-  replicas: 3 # by default is 1
+  replicas: 1 # by default is 1
   template:
     metadata:
       labels:
