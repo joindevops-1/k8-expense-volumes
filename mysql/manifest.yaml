@@ -60,11 +60,6 @@ spec:
         imagePullPolicy: Always
         args:
         - "--ignore-db-dir=lost+found"
-        env:
-        - name: CLUSTER_NAME
-          value: mysql
-        - name: XTRABACKUP_PASSWORD
-          value: backup_password
         ports:
         - containerPort: 80
           name: web
