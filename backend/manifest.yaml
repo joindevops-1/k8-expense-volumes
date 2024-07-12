@@ -16,7 +16,7 @@ metadata:
     project: expense
     tier: app
 spec:
-  replicas: 2
+  replicas: 1
   selector:
     matchLabels:
       component: backend
@@ -36,6 +36,7 @@ spec:
       containers:
       - name: backend
         image: joindevops/backend:v1.0
+        imagePullPolicy: Always
         envFrom:
         - configMapRef:
             name: backend
