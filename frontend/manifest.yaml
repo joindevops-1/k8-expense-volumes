@@ -166,6 +166,7 @@ metadata:
     alb.ingress.kubernetes.io/tags: Environment=dev,Team=test,Project=Expense
     alb.ingress.kubernetes.io/group.name: joindevops
     alb.ingress.kubernetes.io/security-groups: sg-0cd5dc7154cd79726
+    alb.ingress.kubernetes.io/subnets: subnet-07bb249facab22f8b,subnet-00803564754562ce8
     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:315069654700:certificate/ccb0fc81-40d5-4478-b612-05c89f887da7
 spec:
   ingressClassName: alb
