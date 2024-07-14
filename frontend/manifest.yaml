@@ -155,29 +155,41 @@ spec:
     port: 80 #service-port
     targetPort: 8080 #target-port
 ---
-apiVersion: networking.k8s.io/v1
-kind: Ingress
+# apiVersion: networking.k8s.io/v1
+# kind: Ingress
+# metadata:
+#   name: frontend
+#   namespace: expense
+#   annotations:
+#     alb.ingress.kubernetes.io/scheme: internet-facing
+#     alb.ingress.kubernetes.io/target-type: ip
+#     alb.ingress.kubernetes.io/tags: Environment=dev,Team=test,Project=Expense
+#     alb.ingress.kubernetes.io/group.name: joindevops
+#     alb.ingress.kubernetes.io/security-groups: sg-0cd5dc7154cd79726
+#     alb.ingress.kubernetes.io/subnets: subnet-07bb249facab22f8b,subnet-00803564754562ce8
+#     alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:315069654700:certificate/ccb0fc81-40d5-4478-b612-05c89f887da7
+# spec:
+#   ingressClassName: alb
+#   rules:
+#   - host: "expense.daws78s.online"
+#     http:
+#       paths:
+#       - pathType: Prefix
+#         path: "/"
+#         backend:
+#           service:
+#             name: frontend
+#             port:
+#               number: 80
+
+apiVersion: elbv2.k8s.aws/v1beta1
+kind: TargetGroupBinding
 metadata:
   name: frontend
   namespace: expense
-  annotations:
-    alb.ingress.kubernetes.io/scheme: internet-facing
-    alb.ingress.kubernetes.io/target-type: ip
-    alb.ingress.kubernetes.io/tags: Environment=dev,Team=test,Project=Expense
-    alb.ingress.kubernetes.io/group.name: joindevops
-    alb.ingress.kubernetes.io/security-groups: sg-0cd5dc7154cd79726
-    alb.ingress.kubernetes.io/subnets: subnet-07bb249facab22f8b,subnet-00803564754562ce8
-    alb.ingress.kubernetes.io/certificate-arn: arn:aws:acm:us-east-1:315069654700:certificate/ccb0fc81-40d5-4478-b612-05c89f887da7
 spec:
-  ingressClassName: alb
-  rules:
-  - host: "expense.daws78s.online"
-    http:
-      paths:
-      - pathType: Prefix
-        path: "/"
-        backend:
-          service:
-            name: frontend
-            port:
-              number: 80
+  serviceRef:
+    name: frontend
+    port: 80
+  targetGroupARN: arn:aws:elasticloadbalancing:us-east-1:315069654700:targetgroup/expense-dev-web-alb/4f493b1d93729439
+  targetType: ip
